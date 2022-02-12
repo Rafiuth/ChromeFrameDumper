@@ -1,0 +1,13 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
+  "name": "widevine-frame-dumper",
+  "version": "1.0",
+  "dependencies": [
+    "minhook",
+    {
+        "name": "ffmpeg",
+        "default-features": false,
+        "features": ["avcodec", "avdevice", "avformat", "x264" ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+.vs/
+build/
+obj/
+vcpkg_installed/
+*.user
+*.filters
