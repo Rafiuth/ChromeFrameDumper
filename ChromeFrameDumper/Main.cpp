@@ -182,8 +182,8 @@ DETOUR_FUNC(void, VideoDecoderStream_OnDecodeOutputReady, (
     if (!enc.Muxer) {
         enc.OpenMuxer(_baseDir / std::format("video_{}_{}.mkv", (void*)self, frame->timestamp_.value));
 
-        AVCodec* codec = AV_CHECK_NULL(avcodec_find_encoder_by_name("libx264"));
-        AVCodecContext* encoder = AV_CHECK_NULL(avcodec_alloc_context3(codec));
+        auto codec = AV_CHECK_NULL(avcodec_find_encoder_by_name("libx264"));
+        auto encoder = AV_CHECK_NULL(avcodec_alloc_context3(codec));
         encoder->width = size.width;
         encoder->height = size.height;
         encoder->pix_fmt = AV_PIX_FMT_YUV420P;
