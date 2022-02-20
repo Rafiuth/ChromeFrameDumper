@@ -1,0 +1,27 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: microsoft/setup-msbuild@v1.0.3
+
+    - name: Build
+      run: |
+        cd ChromeFrameDumper
+        vcpkg install --overlay-triplets="./vcpkg_triplets" --triplet=x64-windows-static-rel
+        vcpkg integrate install
+        cd ../
+        msbuild /p:Configuration=Release /p:Platform=x64
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        path: build/*
